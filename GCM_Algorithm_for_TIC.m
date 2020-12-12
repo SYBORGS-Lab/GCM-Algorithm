@@ -6,16 +6,20 @@
 
 %% Trainining the Dynamic thrombin generation model parameter estimation, using matching pursuit greedy algorithm,  
 
-% Import fitted thrombin model parameters to experimental data using
-% Simulink Design Optimization Toolbox 
-DataSheet_Nor_Train=xlsread('NSamples_Factors_Fits_Therapy',1,'B2:O21');
-DataSheet_Tra_Train=xlsread('TraumaSamples_Factors_Fits_Therapy',1,'B2:O36');
-DataSheet_All=[DataSheet_Nor_Train;DataSheet_Tra_Train] ;
+% Load data that is used for training the prediction model. It includes: Experimental CAT data for normal and trauma samples.
+% SDO model parameter fits, coagulation factor concentration measurements
+load(Algorithm_Training_DataSet);
 
-% Normal and Trauma CAT experiments 
-CAT_measurements_Nor=xlsread('CAT_Normals_Experiment_Therapy',1,'B2:AJ121');
-CAT_measurements=xlsread('CAT_Trauma_Experiment_Therapy',1,'B2:AJ121');
-CAT_measurements_time=xlsread('CAT_Trauma_Experiment_Therapy',1,'A2:A121');
+% The following are fitted thrombin model parameters to experimental data using
+% Simulink Design Optimization Toolbox 
+% DataSheet_Nor_Train
+% DataSheet_Tra_Train
+% DataSheet_All=[DataSheet_Nor_Train;DataSheet_Tra_Train] ;
+
+% The following are Normal and Trauma CAT experiments data 
+% CAT_measurements_Nor
+% CAT_measurements
+% CAT_measurements_time
 
 % Select coagulation factor concentration data from the dataset 
 FactorData_Nor=DataSheet_Nor_Train(:,1:8); 
