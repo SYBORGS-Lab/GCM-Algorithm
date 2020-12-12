@@ -8,7 +8,7 @@
 
 % Load data that includes trained thrombin prediction model paramters. 
 
-load(Algorithm_Parameter_Data);
+load('GCM_Algorithm_Parameter_Data.mat');
 
 %% Forming the normal region: Identifying what is the desired normal range for thrombin generation trajector (CAT) 
 % Mean of Parameters / Max and Min of Fit to Data
@@ -21,19 +21,6 @@ T2 = linspace(0,42,124)';
 Y_est_Min_Nor = 5*impulse(sys_est_Min_Nor,T2);
 Y_est_Max_Nor = 5*impulse(sys_est_Max_Nor,T2);
 Y_est_Mean_Nor = 5*impulse(sys_est_Mean_Nor,T2);
-
-figure(1)
-[hl, hp]=boundedline(T2, Y_est_Mean_Nor, [Y_est_Mean_Nor-Y_est_Min_Nor Y_est_Max_Nor-Y_est_Mean_Nor ], 'alpha');
-outlinebounds(hl, hp)
-box on
-ylim([-25 250])
-xlim([0 42])
-ax = gca;
-ax.FontSize = 20; 
-ax.FontWeight = 'bold'; 
-xlabel('Time [min]')
-ylabel('CAT')
-title('Normal Region')
 
 %Identify normal range 
 [Range_peak_Min,i_m]=max(Y_est_Min_Nor);
@@ -60,14 +47,14 @@ Range_Delay=[Range_Delay_Max Range_Delay_Mean Range_Delay_Min];
 %% Trauma Data: Import new trauma patient data that has not been used in the training 
 %Order of factor concentrations: Factors II, V, VII, IX, X, VIII, ATIII, PC
 
-factor_concen_Tra_sample_initial(1,1)=input('What is factor II concentration?') ;
-factor_concen_Tra_sample_initial(1,2)=input('What is factor V concentration?') ;
-factor_concen_Tra_sample_initial(1,3)=input('What is factor VII concentration?') ;
-factor_concen_Tra_sample_initial(1,4)=input('What is factor XI concentration?') ;
-factor_concen_Tra_sample_initial(1,5)=input('What is factor X concentration?') ;
-factor_concen_Tra_sample_initial(1,6)=input('What is factor VIII concentration?') ;
-factor_concen_Tra_sample_initial(1,7)=input('What is factor ATIII concentration?') ;
-factor_concen_Tra_sample_initial(1,8)=input('What is Protein C concentration?') ;
+factor_concen_Tra_sample_initial(1,1)=input('What is factor II concentration? ') ;
+factor_concen_Tra_sample_initial(1,2)=input('What is factor V concentration? ') ;
+factor_concen_Tra_sample_initial(1,3)=input('What is factor VII concentration? ') ;
+factor_concen_Tra_sample_initial(1,4)=input('What is factor XI concentration? ') ;
+factor_concen_Tra_sample_initial(1,5)=input('What is factor X concentration? ') ;
+factor_concen_Tra_sample_initial(1,6)=input('What is factor VIII concentration? ') ;
+factor_concen_Tra_sample_initial(1,7)=input('What is factor ATIII concentration? ') ;
+factor_concen_Tra_sample_initial(1,8)=input('What is Protein C concentration? ') ;
  
 %% CAT Variation with factor recommendation adjustments Sample by sample 
 T3 = linspace(0,42,42001)';
@@ -444,8 +431,9 @@ end
 Recommended_Coagulation_Factor_Set_S=FactorConcentration_History_TraSample(end,:);
 
 %Display the recommended coagulation concentration set: 
+fprintf('============================================ \n')
 for factS=1:8
-    fprintf('Recommended factor %s concnetration is %d',Factor_tag{factS},Recommended_Coagulation_Factor_Set_S(factS))
+    fprintf('Recommended factor %s concnetration is: %4.1f \n',Factor_tag{factS},Recommended_Coagulation_Factor_Set_S(factS))
 end
 
 %Figure Visualization 
@@ -478,3 +466,4 @@ hold on
 p_r=plot(T3,Y_est_Tra,'k','LineWidth',3);
 
 legend([hp p_c p_r],{'Normal Region','Current CAT','Recommended CAT'})
+
