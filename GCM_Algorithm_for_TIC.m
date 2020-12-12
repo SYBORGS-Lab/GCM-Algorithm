@@ -6,43 +6,12 @@
 
 %% Trainining the Dynamic thrombin generation model parameter estimation, using matching pursuit greedy algorithm,  
 
-% Load data that is used for training the prediction model. It includes: Experimental CAT data for normal and trauma samples.
-% SDO model parameter fits, coagulation factor concentration measurements
-load(Algorithm_Training_DataSet);
+% Load data that includes trained thrombin prediction model paramters. 
 
-% The following are fitted thrombin model parameters to experimental data using
-% Simulink Design Optimization Toolbox 
-% DataSheet_Nor_Train
-% DataSheet_Tra_Train
-% DataSheet_All=[DataSheet_Nor_Train;DataSheet_Tra_Train] ;
-
-% The following are Normal and Trauma CAT experiments data 
-% CAT_measurements_Nor
-% CAT_measurements
-% CAT_measurements_time
-
-% Select coagulation factor concentration data from the dataset 
-FactorData_Nor=DataSheet_Nor_Train(:,1:8); 
-FactorData_Tra=DataSheet_Tra_Train(:,1:8); 
-FactorData_All_Train=[FactorData_Nor; FactorData_Tra]; 
-
-%Greedy MP method to train the model prediction 
-for k=1:5  
-    
-    param=DataSheet_All(:,k+9);
-    [res,fit_param_factor_chosen,i_chosen, Factor_tag, fit_param_sorted] = CAT_Prediction_Therapy(FactorData_All_Train,param) ;
-    const_All_Train(1,k)=fit_param_factor_chosen(1) ;
-    factor_coeff_All_Train(:,k)=fit_param_sorted ;
-
-end
-
+load(Algorithm_Parameter_Data);
 
 %% Forming the normal region: Identifying what is the desired normal range for thrombin generation trajector (CAT) 
 % Mean of Parameters / Max and Min of Fit to Data
-
-Max_ModelParameters_Nor=[0.1379 1.1568 2.1013 58.6692 1.6643];
-Min_ModelParameters_Nor=[0.1448 0.8369 1.7329 14.4500 3.0283];
-Mean_ModelParameters_Nor=[0.0649 0.5038 1.1728 14.8288 1.8556];
 
 sys_est_Min_Nor=tf(Min_ModelParameters_Nor(4),[1 Min_ModelParameters_Nor(3) Min_ModelParameters_Nor(2) Min_ModelParameters_Nor(1)],'InputDelay',Min_ModelParameters_Nor(5));
 sys_est_Max_Nor=tf(Max_ModelParameters_Nor(4),[1 Max_ModelParameters_Nor(3) Max_ModelParameters_Nor(2) Max_ModelParameters_Nor(1)],'InputDelay',Max_ModelParameters_Nor(5));
