@@ -31,4 +31,4 @@ Kelly Kearney (2020). boundedline.m (https://github.com/kakearney/boundedline-pk
 9. Estimated run time is less than a minute.
 
 # Important Dates
-15 December 2020 – Initial Submission <br /> 
+12 December 2020 – Latest Updates <br /> 
