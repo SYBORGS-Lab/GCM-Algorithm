@@ -90,6 +90,7 @@ Range_Delay=[Range_Delay_Max Range_Delay_Mean Range_Delay_Min];
 
 %% Trauma Data: Import new trauma patient data that has not been used in the training 
 %Order of factor concentrations: Factors II, V, VII, IX, X, VIII, ATIII, PC
+
 factor_concen_Tra_sample_initial(1,1)=input('What is factor II concentration?') ;
 factor_concen_Tra_sample_initial(1,2)=input('What is factor V concentration?') ;
 factor_concen_Tra_sample_initial(1,3)=input('What is factor VII concentration?') ;
@@ -99,7 +100,6 @@ factor_concen_Tra_sample_initial(1,6)=input('What is factor VIII concentration?'
 factor_concen_Tra_sample_initial(1,7)=input('What is factor ATIII concentration?') ;
 factor_concen_Tra_sample_initial(1,8)=input('What is Protein C concentration?') ;
  
-
 %% CAT Variation with factor recommendation adjustments Sample by sample 
 T3 = linspace(0,42,42001)';
 FactorConcentration_History_TraSample=[];
