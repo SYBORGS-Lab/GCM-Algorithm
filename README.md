@@ -30,5 +30,8 @@ Kelly Kearney (2020). boundedline.m (https://github.com/kakearney/boundedline-pk
 8. The algorithm will output the recommended concentrations, as well as CAT with current factors and CAT with normal factors. 
 9. Estimated run time is less than a minute.
 
+## Software Licence 
+©Copyright 2021 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
+
 # Important Dates
-12 December 2020 – Latest Updates <br /> 
+23 March 2021 – Latest Updates <br /> 
