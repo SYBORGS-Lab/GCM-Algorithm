@@ -2,7 +2,7 @@
 % Personalized Modulation of Coagulation Factors USing a Thrombin Dynamics
 % Model to Treat Trauma-Induced Coagulopathy 
 % Damon E. Ghetmiri, Mitchell J. Cohen, Amor A. Menezes 
-
+% ©Copyright 2021 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 
 %% Trainining the Dynamic thrombin generation model parameter estimation, using matching pursuit greedy algorithm,  
 
